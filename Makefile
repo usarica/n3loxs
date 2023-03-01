@@ -2,6 +2,12 @@
 #                          -*- Makefile -*-                            #
 ########################################################################
 
+## working dir
+WORKINGDIR = $(shell pwd)
+
+# gsl library
+GSL_CONFIG = $(shell pwd)/gsl-2.6/gsldir/bin/gsl-config
+
 # Compiler and flags C++:
 CC = c++ -std=c++11 -pthread -O3
 # only for debug:
@@ -21,12 +27,6 @@ $(shell mkdir -p build)
 
 ## generate directory subprogs, if not yet existing
 $(shell mkdir -p subprogs)
-
-## working dir
-WORKINGDIR = $(shell pwd)
-
-# gsl library
-GSL_CONFIG = $(shell pwd)/gsl-2.6/gsldir/bin/gsl-config
 
 vpath %.cpp $(WORKINGDIR)/src/ $(WORKINGDIR)/src/dy_w $(WORKINGDIR)/src/ncdy
 vpath %.cpp $(WORKINGDIR)/src/wh $(WORKINGDIR)/src/zh $(WORKINGDIR)/src/bbh $(WORKINGDIR)/src/ggh
