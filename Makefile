@@ -2,11 +2,21 @@
 #                          -*- Makefile -*-                            #
 ########################################################################
 
+# Modification by U. Sarica (March 2023):
+# You can pass the installation paths now using something like
+# make GSL_INSTALL_PREFIX=/home/usarica/work/Offshell_2L2Nu/ggZZKFactors_Run3/CMSSW_10_6_26/src/gsl_install
+# instead of modifying the Makefile itself.
+
+ifndef GSL_INSTALL_PREFIX
+all:
+	@echo "GSL_INSTALL_PREFIX is not set."; echo
+else
+
 ## working dir
 WORKINGDIR = $(shell pwd)
 
 # gsl library
-GSL_CONFIG = $(shell pwd)/gsl-2.6/gsldir/bin/gsl-config
+GSL_CONFIG = $(GSL_INSTALL_PREFIX)/bin/gsl-config
 
 # Compiler and flags C++:
 CC = c++ -std=c++11 -pthread -O3
@@ -134,3 +144,6 @@ clean:
 
 distclean:
 	rm -f ./build/*.o ./subprogs/*
+
+
+endif
