@@ -29,8 +29,8 @@ CC = c++ -std=c++11 -pthread -O3
 LHAPDFCONFIG = lhapdf-config
 LIBSLHAPDF   = -Wl,-rpath,$(shell $(LHAPDFCONFIG) --libdir) $(shell $(LHAPDFCONFIG) --ldflags)
 
-CC += $(shell $(GSL_CONFIG) --cflags) $(shell $(LHAPDFCONFIG) --cflags)
-CC2 = -Wl,-rpath,$(shell $(GSL_CONFIG) --prefix)/lib $(shell $(GSL_CONFIG) --libs) $(LIBSLHAPDF)
+CC += -I$(GSL_INSTALL_PREFIX)/include $(shell $(GSL_CONFIG) --cflags) $(shell $(LHAPDFCONFIG) --cflags)
+CC2 = -Wl,-rpath,$(GSL_INSTALL_PREFIX)/lib -L$(GSL_INSTALL_PREFIX)/lib $(shell $(GSL_CONFIG) --libs) $(LIBSLHAPDF)
 
 ## generate directory obj, if not yet existing
 $(shell mkdir -p build)
